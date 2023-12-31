@@ -1,0 +1,93 @@
+{% extends 'WarehouseKeeper_Profile.html' %}
+
+
+
+{% block warehouse_name_top_page %}
+    {% for w in warehouse_name_top_page_id %}
+         <p style="display: inline">
+             نام شرکت: <span style="color: #fcfbfb" title="نام شرکت">{{ w.company.name }}</span> ||
+         </p>
+
+         <p style="display: inline">
+            نام انبار: <span style="color: #fcfbfb" title="نام انبار انتخاب شده">{{ w.name }}</span>
+         </p>
+    {% endfor %}
+
+{% endblock %}
+
+
+{% block ContentProfile %}
+    <div class="row justify-content-md-center  mt-5" id="ProfileDetail">
+      <div class="col-12 col-sm-12 col-xl-11">
+
+
+
+
+          <p style="text-align: center; font-weight: bold; color: #a212da">نمایش کالاهای موجود در انبار انتخاب شده</p><hr>
+
+
+          <table class="table table-striped table-dark text-right text-center">
+              <thead>
+                <tr>
+
+                  <th scope="col">انبار</th>
+                  <th scope="col">محل استقرار</th>
+                  <th scope="col">کالا</th>
+                  <th scope="col">کد</th>
+                  <th scope="col">گروه</th>
+                  <th scope="col">واحد</th>
+                  <th scope="col">موجودی نرم افزار</th>
+                  <th scope="col">موجودی انبار</th>
+                  <th scope="col">اختلاف موجودی</th>
+
+
+                </tr>
+
+              </thead>
+
+
+              <tbody>
+
+               {% for data in dataset %}
+                <tr>
+
+                  <td>{{ data.warehouse }}</td>
+                  <td>{{ data.location }}</td>
+                  <td>{{ data.goods.name }}</td>
+                  <td>{{ data.goods.code }}</td>
+                  <td>{{ data.goods.group }}</td>
+                  <td>{{ data.goods.unit }}</td>
+                  <td>{{ data.value }}</td>
+
+                  {% if data.value_D %}
+                      <td>{{ data.value_D }}</td>
+                  {% else %}
+                      <td>
+                          <a href="{% url 'MYApp:WarehouseHandling_GoodsValue' id=data.id %}">
+                            وارد کردن موجودی انبار
+                          </a>
+                      </td>
+                  {% endif %}
+
+
+                  {% if data.value_D %}
+                      <td>{{ data.value_Diff }}</td>
+                  {% else %}
+                      <td>
+                          <p style="text-align: center; font-weight: bold">---</p>
+                      </td>
+                  {% endif %}
+
+
+                </tr>
+               {% endfor %}
+
+              </tbody>
+         </table>
+
+
+
+          <p style="text-align: center; color: #ec0000; font-weight: bold">{{ message }}</p>
+      </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,8 @@
+.navbar .dropdown-menu{text-align: center;background-color: #d3ae10;}
+.navbar .dropdown-menu a:hover{background-color: #4d6eff;color: #d3ae10;}
+#Brand{width: 100px; height:40px; background-color: #d3ae10; color: #00178b; text-align: center;border:solid 1px #ec0000;border-radius: 10px;}
+.mySlides {display:none;}
+body .container-fluid{padding-left: 0; padding-right: 0;padding-top: 0;}
+body #myfooter > *{text-align: center;padding-bottom: 0}
+#about{text-align: center;padding-bottom: 0}
+body footer i{color: #d3ae10}

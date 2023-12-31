@@ -1,0 +1,60 @@
+{% extends 'WarehouseKeeper_Profile.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{% block warehouse_name_top_page %}
+    {% for w in warehouse_name_top_page_id %}
+         <p style="display: inline">
+             نام شرکت: <span style="color: #fcfbfb" title="نام شرکت">{{ w.company.name }}</span> ||
+         </p>
+
+         <p style="display: inline">
+            نام انبار: <span style="color: #fcfbfb" title="نام انبار انتخاب شده">{{ w.name }}</span>
+         </p>
+    {% endfor %}
+
+{% endblock %}
+
+
+
+{% block ContentProfile %}
+    <div class="container">
+        <div class="row justify-content-center mt-2" id="ProfileDetail">
+
+
+          <p style="text-align: center; color: #ec0000; font-weight: bold">{{ message }}</p><hr>
+
+
+
+          <form  method="post" style="text-align: right">
+              {% csrf_token %}
+              <div class="col-12 col-sm-12 col-xl-6" style="float: right">
+                  {{form.id|as_crispy_field}}
+                  {{form.registrationOfGoods|as_crispy_field}}
+                  {{form.warehouse|as_crispy_field}}
+                  {{form.user|as_crispy_field}}
+                  {{form.driver_receive|as_crispy_field}}
+
+              </div>
+
+
+              <div class="col-12 col-sm-12 col-xl-6" style="float: left">
+                  {{form.SerialForDriver|as_crispy_field}}
+                  {{form.receiver|as_crispy_field}}
+                  {{form.value|as_crispy_field}}
+                  {{form.address|as_crispy_field}}
+
+              </div>
+
+
+
+              <input type="submit" class="btn btn-success btn-block" style="width: 98%; margin-right: 1%"
+                     value="ثبت خروج کالا"><br>
+
+
+          </form>
+
+        </div>
+    </div>
+{% endblock %}

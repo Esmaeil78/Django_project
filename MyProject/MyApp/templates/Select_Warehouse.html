@@ -1,0 +1,42 @@
+{% extends 'WarehouseKeeper_Profile.html' %}
+{% load crispy_forms_tags %}
+
+
+
+
+
+{% block warehouse_name_top_page %}
+    {% for w in warehouse_name_top_page_id %}
+         <p style="display: inline">
+             نام شرکت: <span style="color: #fcfbfb" title="نام شرکت">{{ w.company.name }}</span> ||
+         </p>
+
+         <p style="display: inline">
+            نام انبار: <span style="color: #fcfbfb" title="نام انبار انتخاب شده">{{ w.name }}</span>
+         </p>
+    {% endfor %}
+
+{% endblock %}
+
+
+
+
+
+
+{% block ContentProfile %}
+    <div class="row justify-content-md-center mr-5 mt-5" id="ProfileDetail">
+      <div class="col-10 col-sm-10 col-md-6 col-lg-4">
+          <p style="color: #a212da; text-align: center; font-weight: bold">
+              در حال حاضر انبار با مشخصات زیر انتخاب شده است، اگر مایل به تقییر آن هستید، از منو زیر انبار مورد نظر خود را انتخاب کنید.
+          </p>
+          <form method="post" style="text-align: right">
+              {% csrf_token %}
+	          {{form.name|as_crispy_field}}
+              <input type="submit" class="btn btn-success btn-block" value="انتخاب">
+        </form>
+
+          <hr>
+          <p style="text-align: center; color: #e00c24">{{ message }}</p>
+      </div>
+    </div>
+{% endblock %}

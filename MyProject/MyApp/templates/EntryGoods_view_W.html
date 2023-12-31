@@ -1,0 +1,159 @@
+{% extends 'WarehouseKeeper_Profile.html' %}
+
+
+
+{% block warehouse_name_top_page %}
+    {% for w in warehouse_name_top_page_id %}
+         <p style="display: inline">
+             نام شرکت: <span style="color: #fcfbfb" title="نام شرکت">{{ w.company.name }}</span> ||
+         </p>
+
+         <p style="display: inline">
+            نام انبار: <span style="color: #fcfbfb" title="نام انبار انتخاب شده">{{ w.name }}</span>
+         </p>
+    {% endfor %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+{% block ContentProfile %}
+    <div class="row justify-content-md-center mt-2 mx-xl-1" id="ProfileDetail">
+      <div class="col-12 col-sm-12">
+
+          {% if SerialForDriver_Create %}
+              <p style="color: #9207c0; text-align: center; font-weight: bold">
+              اطلاعات کالاهای وارد شده با شماره رسید = {{SerialForDriver_Create}}
+              </p>
+          {% else %}
+               <p style="color: #9207c0; text-align: center; font-weight: bold">اطلاعات ورود کالا به انبار انتخاب شده</p>
+          {% endif %}
+
+
+
+          {% if filterdate == '' %}
+             <div class="btn-group" style="margin-left: 47%; margin-bottom: 3%">
+                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    فیلتر
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item text-center" href="{% url 'MYApp:EntryGoods_view' %}"
+                    onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                         تاریخ نزولی
+                    </a>
+
+                    <a class="dropdown-item text-center" href="{% url 'MYApp:EntryGoods_ByFilter_Filter_DateAsc' %}"
+                    onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                         تاریخ صعودی
+                    </a>
+                    <a class="dropdown-item text-center" href="{% url 'MYApp:EntryGoods_ByFilter_Filter_MinValue' %}"
+                       onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                         کمترین مقدار
+                    </a>
+
+                    <a class="dropdown-item text-center" href="{% url 'MYApp:EntryGoods_ByFilter_Filter_MaxValue' %}"
+                       onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                        بیشترین مقدار
+                    </a>
+
+                    <a class="dropdown-item text-center" href="{% url 'MYApp:EntryGoods_ByFilter_Filter_Driver' %}"
+                    onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                        نام راننده
+                    </a>
+                    <a class="dropdown-item text-center" href="{% url 'MYApp:EntryGoods_ByFilter_Filter_Sender' %}"
+                       onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                        نام ارسال کننده
+                    </a>
+
+                    <a class="dropdown-item text-center" href="{% url 'MYApp:EntryGoods_ByFilter_Filter_Location' %}"
+                       onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                        محل استقرار در انبار
+                    </a>
+
+
+
+                  </div>
+              </div>
+          {% endif %}
+
+          <table class="table table-striped table-dark text-right">
+
+              <thead>
+                <tr>
+                  <th scope="col"> انبار</th>
+                  <th scope="col">کالا</th>
+                  <th scope="col">مقدار</th>
+                  <th scope="col">تاریخ</th>
+                  <th scope="col">انباردار</th>
+                  <th scope="col">راننده</th>
+                  <th scope="col">ارسال کننده</th>
+                  <th scope="col">تلفن </th>
+                  <th scope="col">شناسه ورود</th>
+                  <th scope="col">شماره رسید</th>
+                  <th scope="col">ویرایش </th>
+                  <th scope="col">حذف  </th>
+                </tr>
+              </thead>
+
+
+              <tbody>
+
+                  {% for data in dataset %}
+                    <tr>
+                      <td>{{ data.warehouse }}</td>
+
+                      <td>{{ data.registrationOfGoods }}</td>
+
+                      <td>{{ data.value }}</td>
+
+                      <td>{{ data.date }}</td>
+
+                      <td>{{ data.user }}</td>
+
+                      <td>{{ data.driver_send }}</td>
+
+                      <td>{{ data.sender }}</td>
+
+                      <td>{{ data.sender.phone }}</td>
+
+
+
+                      <td>
+                          <a href="{% url 'MYApp:EntryGoods_Serials' id=data.id %}"
+                          title="برای نمایش سریال کالاهای وارد شده، بر روی شناسه ورود کیلک کنید">
+                          {{ data.id }}
+                          </a>
+                      </td>
+
+
+                      <td>
+                          <a href="{% url 'MYApp:EntryGoods_view_ByFilter_serial' serial=data.SerialForDriver %}"
+                          title="برای نمایش اطلاعات مربوط به شماره رسید، بر روی شماره رسید کیلک کنید">
+                          {{ data.SerialForDriver }}
+                          </a>
+                      </td>
+
+
+
+
+                      <td> <a href="{% url 'MYApp:EntryGoods_update' id=data.id %}"> ویرایش </a></td>
+
+                      <td> <a href="{% url 'MYApp:EntryGoods_delete' id=data.id %}"> حذف </a></td>
+                    </tr>
+                  {% endfor %}
+
+              </tbody>
+
+         </table>
+
+
+          <p style="text-align: center; color: #ec0000; font-weight: bold">{{ message }}</p>
+      </div>
+    </div>
+{% endblock %}

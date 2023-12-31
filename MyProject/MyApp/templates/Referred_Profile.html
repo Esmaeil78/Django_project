@@ -1,0 +1,84 @@
+{% extends 'base_profile.html' %}
+{% block extra_head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'MyApp/css/style_for_ViewProfile.css' %}">
+{% endblock %}
+{% block content %}
+                <nav class="navbar navbar-expand-xl text-right navbar-dark bg-primary fixed-top">
+                    <a class="navbar-brand" href="#">
+                        <div id="Brand">
+                            <h2>online</h2>
+                        </div>
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown" >
+                        <ul class="navbar-nav">
+
+
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'MYApp:referred' %}">صفحه اصلی<span class="sr-only">(current)</span></a>
+                            </li>
+
+
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'MYApp:create_Requestgoods' %}">درخواست کالا<span class="sr-only">(current)</span></a>
+                            </li>
+
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'MYApp:view_Requestgoods' %}">نتیجه درخواست کالا<span class="sr-only">(current)</span></a>
+                            </li>
+
+
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'MYApp:view_Requestgoods_ByFilter_Date' %}"
+                                   title="وارد کردن بازه تاریخی و نمایش نتایح درخواست کالا در ان بازه">
+                                    نتیجه درخواست کالا با فیلتر<span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'MYApp:view_Requestgoods' %}">ویرایش درخواست کالا<span class="sr-only">(current)</span></a>
+                            </li>
+
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'MYApp:view_Requestgoods' %}">حذف درخواست کالا<span class="sr-only">(current)</span></a>
+                            </li>
+
+
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    پروفایل(<span style="color: #111111" title="نام کاربری">{{ user.get_username }}</span>)
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{% url 'MYApp:viewprofile' %}">مشاهده پروفایل</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:change_password' %}">تقییر رمز ورود</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:logout' %}">خروج</a>
+                                </div>
+                            </li>
+
+
+
+                        </ul>
+                    </div>
+                </nav>
+
+
+                <div class="row justify-content-md-center " style="margin-top: 80px;background-color: #a8a2a2;height:auto;">
+                    <div class="col" id="ContentProfile">
+
+                        {% block ContentProfile %}
+                        {% endblock %}
+
+                    </div>
+                </div>
+
+
+
+{% endblock %}
+

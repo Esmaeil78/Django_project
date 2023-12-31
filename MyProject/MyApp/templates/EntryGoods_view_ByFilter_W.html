@@ -1,0 +1,53 @@
+{% extends 'WarehouseKeeper_Profile.html' %}
+
+
+{% block warehouse_name_top_page %}
+    {% for w in warehouse_name_top_page_id %}
+         <p style="display: inline">
+             نام شرکت: <span style="color: #fcfbfb" title="نام شرکت">{{ w.company.name }}</span> ||
+         </p>
+
+         <p style="display: inline">
+            نام انبار: <span style="color: #fcfbfb" title="نام انبار انتخاب شده">{{ w.name }}</span>
+         </p>
+    {% endfor %}
+
+{% endblock %}
+
+
+
+
+{% block ContentProfile %}
+    <div class="row justify-content-md-center  mt-5" id="ProfileDetail">
+      <div class="col-12 col-md-8 col-xl-6">
+
+          <p style="text-align: center; font-weight: bold; color: #9207c0">
+              لطفا برای مشاهده اطلاعات "ورود کالا"، یکی از فیلترهای زیر را انتخاب کنید:
+          </p> <hr>
+
+
+         <a href="{% url 'MYApp:EntryGoods_view_ByFilter_WarehouseName' %}" style="text-decoration: none">
+             <button type="button" class="btn btn-outline-dark btn-lg btn-block">نام انبار</button>
+         </a><hr>
+
+         <a href="{% url 'MYApp:EntryGoods_view_ByFilter_DriverName' %}" style="text-decoration: none">
+             <button type="button" class="btn btn-outline-dark btn-lg btn-block">نام راننده</button>
+         </a><hr>
+
+         <a href="{% url 'MYApp:EntryGoods_view_ByFilter_ReferredName' %}" style="text-decoration: none">
+             <button type="button" class="btn btn-outline-dark btn-lg btn-block">نام مراجعه کننده</button>
+         </a><hr>
+
+         <a href="{% url 'MYApp:EntryGoods_view_ByFilter_WarehouseName_Date' %}" style="text-decoration: none">
+             <button type="button" class="btn btn-outline-dark btn-lg btn-block">نام انبار + تاریخ</button>
+         </a><hr>
+
+         <a href="{% url 'MYApp:EntryGoods_view_ByFilter_WarehouseName_Date_DriverName' %}"
+            style="text-decoration: none">
+             <button type="button" class="btn btn-outline-dark btn-lg btn-block">نام انبار + تاریخ + نام راننده</button>
+         </a>
+
+
+      </div>
+    </div>
+{% endblock %}

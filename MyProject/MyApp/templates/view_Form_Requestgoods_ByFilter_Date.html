@@ -1,0 +1,17 @@
+{% extends 'Referred_Profile.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block ContentProfile %}
+    <div class="row justify-content-sm-center mt-2" id="ProfileDetail">
+      <div class="col-12 col-sm-6 col-xl-4">
+          <p style="text-align: center; color: #ec0000; font-weight: bold">{{ message }}</p><hr>
+          <p style="text-align: center; color: #1c7312; font-weight: bold">وارد کردن بازه تاریخی و نمایش نتایح درخواست کالا در ان بازه</p>
+          <form method="post" style="text-align: right">
+              {% csrf_token %}
+	          {{ form|crispy}}
+              <input type="submit" class="btn btn-success btn-block" value="مشاهده درخواست کالا">
+        </form>
+      </div>
+    </div>
+{% endblock %}

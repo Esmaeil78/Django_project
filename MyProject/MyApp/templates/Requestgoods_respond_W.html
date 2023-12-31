@@ -1,0 +1,90 @@
+{% extends 'WarehouseKeeper_Profile.html' %}
+{% load crispy_forms_tags %}
+
+
+
+
+{% block warehouse_name_top_page %}
+    {% for w in warehouse_name_top_page_id %}
+         <p style="display: inline">
+             نام شرکت: <span style="color: #fcfbfb" title="نام شرکت">{{ w.company.name }}</span> ||
+         </p>
+
+         <p style="display: inline">
+            نام انبار: <span style="color: #fcfbfb" title="نام انبار انتخاب شده">{{ w.name }}</span>
+         </p>
+    {% endfor %}
+
+{% endblock %}
+
+
+
+
+
+
+{% block ContentProfile %}
+    <div class="row justify-content-md-center" id="ProfileDetail">
+      <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-6">
+
+          <p style="text-align: center; color: #ec0000; font-weight: bold">{{ message }}</p>
+
+          <form method="post" style="text-align: right">
+              {% csrf_token %}
+              {{form.goods|as_crispy_field}}
+              {{form.value|as_crispy_field}}
+              {{form.profile|as_crispy_field}}
+              {{form.address|as_crispy_field}}
+
+              <hr style="border-top: 1px dashed red;">
+
+              <div style="margin-right: 43%">
+                  <button type="button" class="btn btn-primary" onclick="accept()">قبول</button>
+                  <button type="button" class="btn btn-primary" onclick="reject()">
+                      <span style="visibility: hidden">1</span>
+                      رد
+                      <span style="visibility: hidden">1</span>
+                  </button>
+
+              </div>
+              {{form.result|as_crispy_field}}
+              <hr style="border-top: 1px dashed red;">
+
+              <div id="acc" style="display : none">
+                  {{form.user|as_crispy_field}}
+                  {{form.serial|as_crispy_field}}
+              </div>
+
+
+              <div id="rej" style="display : none">
+                  {{form.user|as_crispy_field}}
+                  {{form.comment|as_crispy_field}}
+              </div>
+
+              <input type="submit" class="btn btn-success btn-block" value="ثبت پاسخ">
+        </form>
+          <hr>
+
+          <a href="{% url 'MYApp:ExitGoods_Create_For_Referred' %}" style="text-decoration: none">
+              <button type="button" class="btn btn-outline-dark btn-lg btn-block mb-2">
+                  ثبت خروج کالا برای این درخواست
+              </button>
+          </a>
+      </div>
+    </div>
+{% endblock %}
+
+
+{% block java_script %}
+    <script>
+        function accept() {
+            document.getElementById("acc").style.display = "block";
+            document.getElementById("rej").style.display = "none";
+        }
+
+        function reject()
+        {
+            document.getElementById("acc").style.display = "none";
+            document.getElementById("rej").style.display = "block";
+        }
+    </script>
+{% endblock %}

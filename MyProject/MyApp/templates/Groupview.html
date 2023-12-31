@@ -1,0 +1,65 @@
+{% extends 'WarehouseKeeper_Profile.html' %}
+
+
+
+
+
+
+{% block warehouse_name_top_page %}
+    {% for w in warehouse_name_top_page_id %}
+         <p style="display: inline">
+             نام شرکت: <span style="color: #fcfbfb" title="نام شرکت">{{ w.company.name }}</span> ||
+         </p>
+
+         <p style="display: inline">
+            نام انبار: <span style="color: #fcfbfb" title="نام انبار انتخاب شده">{{ w.name }}</span>
+         </p>
+    {% endfor %}
+
+{% endblock %}
+
+
+
+
+
+
+{% block ContentProfile %}
+    <div class="row justify-content-md-center  mt-5" id="ProfileDetail">
+      <div class="col-12 col-md-8 col-xl-6">
+
+
+          <table class="table table-striped table-dark text-right">
+
+              <thead>
+                <tr>
+                  <th scope="col">نام گروه</th>
+                  <th scope="col">کد گروه</th>
+                  <th scope="col">ویرایش گروه</th>
+                  <th scope="col">حذف  گروه</th>
+                </tr>
+              </thead>
+
+
+              <tbody>
+
+                  {% for data in dataset %}
+                    <tr>
+                      <td>{{ data.name }}</td>
+
+                      <td>{{ data.number }}</td>
+
+                      <td> <a href="{% url 'MYApp:Groupupdate' id=data.id %}"> ویرایش گروه</a></td>
+
+                      <td> <a href="{% url 'MYApp:Groupdelete' id=data.id %}"> حذف گروه</a></td>
+                    </tr>
+                  {% endfor %}
+
+              </tbody>
+
+         </table>
+
+
+          <p style="text-align: center; color: #ec0000; font-weight: bold">{{ message }}</p>
+      </div>
+    </div>
+{% endblock %}

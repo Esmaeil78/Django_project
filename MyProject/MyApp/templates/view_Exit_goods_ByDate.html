@@ -1,0 +1,27 @@
+{% extends 'Driver_Profile.html' %}
+
+
+
+{% block ContentProfile %}
+    <div class="row justify-content-md-center mr-5 mt-5" id="ProfileDetail">
+      <div class="col-10 col-sm-10 col-md-6 col-lg-4">
+          <p style="color: #a212da; font-weight: bold; text-align: center">
+              لطفا بازه تاریخی مورد نظر خود را برای نمایش فعالیت وارد کنید
+          </p><hr style="background-color: #050505">
+
+          <form method="get" action="{% url 'MYApp:view_Exitgoods_ByDate' %}" style="text-align: center">
+
+              <label for="start_date" style="color: green; font-weight: bold">از تاریخ:</label><br>
+              <input type="date" name="start_date" id="start_date" style="width: 100%;
+               color: green; border: green solid 1px; border-radius: 20%"><hr>
+
+              <label for="finish_date" style="color: green; font-weight: bold">تا تاریخ:</label><br>
+              <input type="date" name="finish_date" id="finish_date" style="width: 100%;
+               color: green; border: green solid 1px; border-radius: 20%"><hr>
+
+              <input type="submit" class="btn btn-success btn-block" value="نمایش">
+
+          </form>
+      </div>
+    </div>
+{% endblock %}

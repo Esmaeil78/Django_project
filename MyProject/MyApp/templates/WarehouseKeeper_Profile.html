@@ -1,0 +1,509 @@
+{% extends 'base_profile.html' %}
+{% block extra_head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'MyApp/css/style_for_ViewProfile.css' %}">
+{% endblock %}
+
+{% block content %}
+                <nav class="navbar navbar-expand-xl text-right navbar-dark bg-primary fixed-top">
+                    <a class="navbar-brand" href="#">
+                        <div id="Brand">
+                            <h2>online</h2>
+                        </div>
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+
+
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown" >
+                        <ul class="navbar-nav">
+
+
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'MYApp:warehousekeeper' %}">صفحه اصلی<span class="sr-only">(current)</span></a>
+                            </li>
+
+
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'MYApp:selectwarehouse' %}">انتخاب انبار<span class="sr-only">(current)</span></a>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                  <!-- dddddddddddddddddddddddddddddddddddddddddddddddddddd-->
+
+                             <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    title="عملیات مربوط به تعریف اولیه کالا">
+                                   تعریف اولیه کالا
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+
+                                    <a class="dropdown-item" href="{% url 'MYApp:DefineGoods_view' %}">مشاهده</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:DefineGoods_Create' %}">ایجاد</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:DefineGoods_view' %}">ویرایش </a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:DefineGoods_view' %}">حذف </a>
+
+                                    <a class="dropdown-item" href="{% url 'MYApp:DefineGoods_viewByCode' %}"
+                                       title="نمایش تعریف اولیه کالا با وارد کردن کد آن">
+                                        جستجو با کد
+                                    </a>
+
+                                    <a class="dropdown-item" href="{% url 'MYApp:DefineGoods_viewByName' %}"
+                                       title="نمایش تعریف اولیه کالا با وارد کردن نام آن">
+                                        جستجو با نام
+                                    </a>
+
+
+                                </div>
+                            </li>
+
+
+                            <!-- dddddddddddddddddddddddddddddddddddddddddddddddddddd-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                              <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                   title="تعریف کالا برای انبارها">
+                                    کالا
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{% url 'MYApp:Goodsview' %}">مشاهده موجودی انبار</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:GoodsCreate' %}">ثبت کالا</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:Goodsview' %}">ویرایش کالا</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:Goodsview' %}">حذف کالا</a>
+
+                                    <a class="dropdown-item" href="{% url 'MYApp:Goods_viewByCode' %}"
+                                       title="نمایش کالا با وارد کردن کد آن">
+                                        جستجو کالا با کد
+                                    </a>
+
+                                    <a class="dropdown-item" href="{% url 'MYApp:Goods_viewByName' %}"
+                                       title="نمایش کالا با وارد کردن نام آن">
+                                        جستجو کالا با نام
+                                    </a>
+
+                                    <a class="dropdown-item" href="{% url 'MYApp:Goods_viewByName_AllWarehouse' %}">
+                                        جستجو کالا در کل انبارها
+                                    </a>
+
+                                </div>
+                            </li>
+
+
+
+
+
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    وضعیت کالاها
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{% url 'MYApp:alarm_expiration' %}"
+                                       title="نمایش کالاهایی که تاریخ انقضاء آنها نزدیک است">
+                                        تاریخ انقضاء
+                                    </a>
+
+                                    <a class="dropdown-item" href="{% url 'MYApp:alarm_min_value' %}"
+                                       title="نمایش کالاهایی که موجودی انها به حداقل رسیده است">
+                                        حداقل موجودی
+                                    </a>
+
+                                    <a class="dropdown-item" href="{% url 'MYApp:alarm_max_value' %}"
+                                       title="نمایش کالاهایی که موجودی انها به حداکثر رسیده است">
+                                        حداکثر موجودی
+                                    </a>
+                                </div>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    title="عملیات مربوط به واحد برای کالاها">
+                                   واحد
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{% url 'MYApp:UnitCreate' %}">ثبت واحد جدید</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:Unitview' %}">مشاهده واحد</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:Unitview' %}">ویرایش واحد</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:Unitview' %}">حذف واحد</a>
+                                </div>
+                            </li>
+
+
+
+
+
+
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                   title="عملیات مربوط به گروه برای کالاها">
+                                    گروه
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{% url 'MYApp:GroupCreate' %}">ثبت گروه جدید</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:Groupview' %}">مشاهده گروه</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:Groupview' %}">ویرایش گروه</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:Groupview' %}">حذف گروه</a>
+                                </div>
+                            </li>
+
+
+
+
+
+
+
+
+
+                             <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                   title="نمایش اطلاعات رانندگان و مراجعه کنندگان">
+                                     اطلاعات
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+                                     <a class="dropdown-item" href="{% url 'MYApp:ShowInfoDriver' %}">نمایش اطلاعات رانندکان</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:ShowInfoReferred' %}">نمایش اطلاعات مراجعه کنندگان</a>
+                                </div>
+                             </li>
+
+
+
+
+
+
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    title="عملیات مربوط به ورود کالا برای انبارها">
+                                   ورود
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{% url 'MYApp:EntryGoods_view_ByFilter_SerialForDriver' %}">رسید انبار</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:EntryGoods_Create' %}">ثبت ورود کالا</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:EntryGoods_view' %}">مشاهده ورود کالا</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:EntryGoods_view_ByFilter' %}">
+                                        مشاهده ورود کالا با فیلتر
+                                    </a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:EntryGoods_view' %}">ویرایش ورود کالا</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:EntryGoods_view' %}">حذف ورود کالا</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:SearchSerial_ENG' %}">جستجو کالا وارد شده با سریال</a>
+                                </div>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+                             <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    title="عملیات مربوط به خروج کالا برای انبارها">
+                                   خروج
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{% url 'MYApp:ExitGoods_view_ByFilter_SerialForDriver' %}">حواله انبار</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:ExitGoods_Create' %}">ثبت خروج کالا</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:ExitGoods_view' %}">مشاهده خروج کالا</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:ExitGoods_view_ByFilter' %}">
+                                        مشاهده خروج کالا با فیلتر
+                                    </a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:ExitGoods_view' %}">ویرایش خروج کالا</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:ExitGoods_view' %}">حذف خروج کالا</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:SearchSerial' %}">جستجو کالا خارج شده با سریال</a>
+                                </div>
+                            </li>
+
+
+
+
+
+
+
+
+
+                              <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    title="درخواستهای کالا توسط مشتری ثبت شده است">
+                                   درخواستها
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{% url 'MYApp:Requestgoods_ByFilter_Filter_GoodsName' %}">بی پاسخ</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:Requestgoods_accepted' %}">پذیرفته شده</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:Requestgoods_rejected' %}">
+                                        رد شده
+                                    </a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:Requestgoods_all_items' %}">تمام درخواستها</a>
+
+                                    <a class="dropdown-item" href="{% url 'MYApp:Requestgoods_all' %}"
+                                       title="نمایش تمام درخواستها با واردکردن بازه تاریخی">
+                                        تمام درخواستها با فیلتر
+                                    </a>
+
+
+
+
+
+
+                                    <a class="dropdown-item" href="{% url 'MYApp:Requestgoods_all_items_onside' %}">
+                                        ثبت خروج برای درخواست
+                                    </a>
+
+
+                                    <a class="dropdown-item" href="{% url 'MYApp:Requestgoods_all_items_SearchByCode'%}">
+                                        پیگیری درخواست کالا با کد رهگیری
+                                    </a>
+
+
+
+                                </div>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                             <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    انبارگردانی
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{% url 'MYApp:WarehouseHandling_Create' %}">شروع انبار گردانی</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:WarehouseHandling_view' %}">مشاهده انبار گردانی</a>
+
+                                    <a class="dropdown-item" href="{% url 'MYApp:WarehouseHandling_view_ByFilter_date' %}"
+                                       title="مشاهده انبار گردانی با وارد کردن بازه تاریخی">
+                                        مشاهده انبار گردانی با فیلتر
+                                    </a>
+
+                                    <a class="dropdown-item" href="{% url 'MYApp:WarehouseHandling_view' %}">ویرایش انبار گردانی</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:WarehouseHandling_view' %}">حذف انبار گردانی</a>
+
+                                </div>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                           <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    پروفایل(<span style="color: #111111" title="نام کاربری">{{ user.get_username }}</span>)
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{% url 'MYApp:viewprofile' %}">مشاهده پروفایل</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:change_password' %}">تقییر رمز ورود</a>
+                                    <a class="dropdown-item" href="{% url 'MYApp:logout' %}">خروج</a>
+                                </div>
+                           </li>
+
+
+                        </ul>
+
+
+                    </div>
+                </nav>
+
+
+
+                  <div class="row justify-content-md-center " style="margin-top: 80px;background-color: #a8a2a2;height:auto;">
+                    <div class="col" id="ContentProfile">
+
+                        <div style="text-align: center; text-decoration: #1e47f8 underline overline; margin-bottom: 15px;
+                             color: #9207c0; font-weight: bold">
+                            {% block warehouse_name_top_page %}
+                            {% endblock %}
+                        </div>
+
+                        {% for data in SelectWarehouse_Name %}
+                            <br>
+                            <div>
+
+                                <p style="color: #a212da; text-align: center; font-weight: bold">
+                                    برای تقییر انبار، از گزینه " انتخاب انبار" در منو استفاده کنید.
+                                </p>
+
+                                <p style="color: #a212da; text-align: center; font-weight: bold">
+                                    در حال حاضر انبار زیر انتخاب شده است:
+                                </p>
+
+
+                                <p style="color: #9207c0; text-align: center; font-weight: bold">
+                                    نام شرکت: <span style="color: #fcfbfb" title="نام شرکت">{{ data.company.name }}</span>
+                                </p>
+
+                                <p style="color: #9207c0; text-align: center; font-weight: bold">
+                                    نام انبار: <span style="color: #fcfbfb" title="نام انبار انتخاب شده">{{ data.name }}</span>
+                                </p>
+
+                            </div>
+                        {% endfor %}
+
+
+
+                        {% block ContentProfile %}
+
+                        {% endblock %}
+
+                    </div>
+                </div>
+{% endblock %}

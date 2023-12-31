@@ -1,0 +1,113 @@
+{% extends 'WarehouseKeeper_Profile.html' %}
+
+
+
+
+{% block warehouse_name_top_page %}
+    {% for w in warehouse_name_top_page_id %}
+         <p style="display: inline">
+             نام شرکت: <span style="color: #fcfbfb" title="نام شرکت">{{ w.company.name }}</span> ||
+         </p>
+
+         <p style="display: inline">
+            نام انبار: <span style="color: #fcfbfb" title="نام انبار انتخاب شده">{{ w.name }}</span>
+         </p>
+    {% endfor %}
+
+{% endblock %}
+
+
+
+
+
+
+
+{% block ContentProfile %}
+    <div class="row justify-content-md-center  mt-5" id="ProfileDetail">
+      <div class="col-12 col-md-12 col-xl-11">
+
+
+         <p style="text-align: center; font-weight: bold; color: #a212da">لیست انبارگردانی انجام شده برای انبار انتخاب شده</p>
+
+         {% if filterdate == '' %}
+             <div class="btn-group" style="margin-left: 47%; margin-bottom: 3%">
+                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    فیلتر
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'MYApp:WarehouseHandling_view' %}"
+                    onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                        نمایش با تاریخ نزولی
+                    </a>
+                    <a class="dropdown-item" href="{% url 'MYApp:WarehouseHandling_view_FilterDate_Ase' %}"
+                       onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                        نمایش با تاریخ صعودی
+                    </a>
+                  </div>
+              </div>
+         {% endif %}
+
+
+          <table class="table table-striped table-dark text-right">
+
+              <thead>
+                <tr>
+                  <th scope="col">نام انبار</th>
+                  <th scope="col"> عنوان</th>
+                  <th scope="col">تاریخ شروع</th>
+                  <th scope="col">تاریخ پایان</th>
+                  <th scope="col"> توضیحات</th>
+                  <th scope="col"> ادامه</th>
+                  <th scope="col"> ویرایش</th>
+                  <th scope="col"> حذف</th>
+                </tr>
+              </thead>
+
+
+              <tbody>
+
+                  {% for data in dataset %}
+                    <tr>
+                      <td>{{ data.warehouse }}</td>
+
+                      <td>{{ data.title }}</td>
+
+                      <td>{{ data.start_date }}</td>
+
+                      <td>{{ data.finish_date }}</td>
+
+                      <td>{{ data.comment }}</td>
+
+                      {% if data.finish_date == None %}
+                          <td><a href="{% url 'MYApp:WarehouseHandling_continue' %}"> ادامه </a></td>
+                      {% else %}
+                         <td> <p>انبار گردانی به اتمام رسیده است</p> </td>
+                      {% endif %}
+
+                       {% if data.finish_date == None %}
+                          <td> <a href="{% url 'MYApp:WarehouseHandling_update' id=data.id %}"> ویرایش </a></td>
+                      {% else %}
+                          <td> <p>امکان ویرایش وجود ندارد</p> </td>
+                      {% endif %}
+
+                       {% if data.finish_date == None %}
+                          <td> <a href="{% url 'MYApp:WarehouseHandling_delete' id=data.id %}"> حذف </a></td>
+                      {% else %}
+                          <td>  <p>امکان حذف وجود ندارد</p> </td>
+                      {% endif %}
+
+
+
+
+                    </tr>
+                  {% endfor %}
+
+              </tbody>
+
+         </table>
+
+
+          <p style="text-align: center; color: #ec0000; font-weight: bold">{{ message }}</p>
+      </div>
+    </div>
+{% endblock %}

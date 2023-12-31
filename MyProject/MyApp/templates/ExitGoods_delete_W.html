@@ -1,0 +1,51 @@
+{% extends 'WarehouseKeeper_Profile.html' %}
+
+
+{% block warehouse_name_top_page %}
+    {% for w in warehouse_name_top_page_id %}
+         <p style="display: inline">
+             نام شرکت: <span style="color: #fcfbfb" title="نام شرکت">{{ w.company.name }}</span> ||
+         </p>
+
+         <p style="display: inline">
+            نام انبار: <span style="color: #fcfbfb" title="نام انبار انتخاب شده">{{ w.name }}</span>
+         </p>
+    {% endfor %}
+
+{% endblock %}
+
+
+{% block ContentProfile %}
+    <div class="row justify-content-md-center mt-5" id="ProfileDetail">
+      <div class="col-12 col-md-6 col-xl-4">
+          <form method="post" style="text-align: right">
+              {% csrf_token %}
+              <p style="color: #9207c0; font-size: medium; font-weight: bold; text-align: center"> ایا شما میخواهید اطلاعات مروبط به این خروج کالا را حذف کنید؟</p>
+              <input type="submit" class="btn btn-success btn-block" value="حذف خروج کالا">
+
+        </form>
+
+           <br>
+          {% if delete == 'Yes' %}
+              <button type="button" class="btn btn-primary" style="margin-left: 40%" >
+                  <a href="#"  onclick="history.go(-2);" style="color: white">بازگشت  </a>
+              </button>
+          {% else %}
+              <button type="button" class="btn btn-primary" style="margin-left: 40%" >
+                  <a href="#"  onclick="history.go(-1);" style="color: white">بازگشت  </a>
+              </button>
+          {% endif %}
+          <hr>
+
+          <p style="text-align: center; color: #ec0000; font-weight: bold">{{ message }}</p>
+      </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+

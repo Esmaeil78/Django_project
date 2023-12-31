@@ -1,0 +1,37 @@
+{% extends 'Referred_Profile.html' %}
+
+
+{% block ContentProfile %}
+    <div class="row justify-content-md-center mr-5 mt-5" id="ProfileDetail">
+      <div class="col-10 col-sm-10 col-md-6 col-lg-4">
+          <form method="post" style="text-align: right">
+              {% csrf_token %}
+              <p style="color: #9207c0; font-size: medium; font-weight: bold; text-align: center"> ایا شما میخواهید این درخواست کالا را حذف کنید؟</p>
+              <input type="submit" class="btn btn-success btn-block" value="حذف درخواست">
+
+        </form>
+
+          <br>
+          {% if delete == 'Yes' %}
+              <button type="button" class="btn btn-primary" style="margin-left: 40%" >
+                  <a href="#"  onclick="history.go(-2);" style="color: white">بازگشت  </a>
+              </button>
+          {% else %}
+              <button type="button" class="btn btn-primary" style="margin-left: 40%" >
+                  <a href="#"  onclick="history.go(-1);" style="color: white">بازگشت  </a>
+              </button>
+          {% endif %}
+          <hr>
+
+          <p style="text-align: center; color: #ec0000">{{ message }}</p>
+      </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+

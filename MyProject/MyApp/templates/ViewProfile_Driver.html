@@ -1,0 +1,86 @@
+{% extends 'Driver_Profile.html' %}
+
+{% block ContentProfile %}
+    <div class="row justify-content-md-center" id="ProfileDetail">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+          <form>
+              <div class="form-group" style="text-align: center">
+
+                  <div class="col-3 col-sm-3 col-md-4 col-lg-5">
+                      <img src="{{ profile.picture.url }}" alt="Photo" class="img-thumbnail rounded-circle
+                       border border-success">
+                  </div>
+
+                  <label for="name1"> نام کاربری </label>
+                  <input type="text" class="form-control" id="name1" value="{{ user.username }}"><hr>
+
+                  <label for="name2">نام</label>
+                  <input type="text" class="form-control" id="name2" value="{{ user.first_name}}"><hr>
+
+                  <label for="name11">نام خانوادگی</label>
+                  <input type="text" class="form-control" id="name11" value="{{ user.last_name }}"><hr>
+
+                  <label for="name3">ایمیل</label>
+                  <input type="text" class="form-control" id="name3" value="{{ user.email }}"><hr>
+
+                  <label for="name4">کد ملی</label>
+                  <input type="text" class="form-control" id="name4" value="{{ profile.national_code }}"><hr>
+
+
+              </div>
+          </form>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+          <form>
+              <div class="form-group" style="text-align: center">
+
+                   <div class="col-3 col-sm-3 col-md-4 col-lg-5" style="visibility: hidden">
+                      <img src="{{ profile.picture.url }}" alt="Photo" class="img-thumbnail">
+                  </div>
+
+                  <label for="name5"> سن </label>
+                  <input type="text" class="form-control" id="name5" value="{{ profile.age }}"><hr>
+
+
+                  <label for="name6">مدرک تحصیلی</label>
+                  {% if profile.evidence == "1" %}
+                     <input type="text" class="form-control" id="name6" value="زیردیپلم"><hr>
+                  {% elif profile.evidence == "2" %}
+                      <input type="text" class="form-control" id="name6" value="دیپلم"><hr>
+                  {% elif profile.evidence == "3" %}
+                      <input type="text" class="form-control" id="name6" value="فوق دیپلم"><hr>
+                  {% elif profile.evidence == "4" %}
+                      <input type="text" class="form-control" id="name6" value="لیسانس"><hr>
+                  {% else %}
+                      <input type="text" class="form-control" id="name6" value="بالاتر از لیسانس"><hr>
+                  {% endif %}
+
+
+                  <label for="name7">سمت</label>
+                  {% if profile.post == "1" %}
+                     <input type="text" class="form-control" id="name7" value="مدیر"><hr>
+                  {% elif profile.post == "2" %}
+                      <input type="text" class="form-control" id="name7" value="انبار دار"><hr>
+                  {% elif profile.post == "3" %}
+                      <input type="text" class="form-control" id="name7" value="مراجعه کننده"><hr>
+                  {% else %}
+                      <input type="text" class="form-control" id="name7" value="راننده"><hr>
+                  {% endif %}
+
+
+
+
+                  <label for="name9">شماره موبایل</label>
+                  <input type="text" class="form-control" id="name9" value="{{ profile.phone }}"><hr>
+
+
+                  <label for="name8">آدرس</label>
+                  <input type="text" class="form-control" id="name8" value="{{ profile.address }}">
+
+              </div>
+          </form>
+      </div>
+
+    </div>
+{% endblock %}

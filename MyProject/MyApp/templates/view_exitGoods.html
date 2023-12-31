@@ -1,0 +1,117 @@
+{% extends 'Driver_Profile.html' %}
+
+
+{% block ContentProfile %}
+    <div class="row justify-content-md-center  mt-5 mx-xl-1" id="ProfileDetail">
+      <div class="col-12 col-sm-12">
+
+           {% if SerialForDriver_Create %}
+              <p style="color: #a212da; text-align: center; font-weight: bold">
+              اطلاعات کالاهای خارج شده با شماره حواله = {{SerialForDriver_Create}}
+              </p>
+          {% else %}
+               <p style="color: #a212da; text-align: center; font-weight: bold">
+              راننده محترم، موارد زیر فعالیت شما در زمینه خروج کالا از انبارهای شرکت را نشان میدهد
+               </p>
+          {% endif %}
+
+
+          {% if SerialForDriver_Create == '' %}
+              <div class="btn-group" style="margin-left: 47%; margin-bottom: 3%">
+                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    فیلتر
+                  </button>
+                  <div class="dropdown-menu">
+
+                    <a class="dropdown-item text-center" href="{% url 'MYApp:view_Exitgoods_Filter_GoodsName' %}"
+                       onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                          نام کالا
+                    </a>
+                    <a class="dropdown-item text-center" href="{% url 'MYApp:view_Exitgoods_Filter_warehouse' %}"
+                       onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                        نام انبار
+                    </a>
+                    <a class="dropdown-item text-center" href="{% url 'MYApp:view_Exitgoods_Filter_serialExit' %}"
+                       onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                        شناسه خروج
+                    </a>
+                    <a class="dropdown-item text-center" href="{% url 'MYApp:view_Exitgoods_Filter_Serialfordriver' %}"
+                       onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                        شماره حواله
+                    </a>
+                    <a class="dropdown-item text-center" href="{% url 'MYApp:view_Exitgoods' %}"
+                    onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                         تاریخ نزولی
+                    </a>
+                    <a class="dropdown-item text-center" href="{% url 'MYApp:view_Exitgoods_Ace' %}"
+                       onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                          تاریخ صعودی
+                    </a>
+                    <a class="dropdown-item text-center" href="{% url 'MYApp:view_Exitgoods_Filter_maxvalue' %}"
+                       onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                        بیشترین مقدار
+                    </a>
+                    <a class="dropdown-item text-center" href="{% url 'MYApp:view_Exitgoods_Filter_minValule' %}"
+                       onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                        کمترین مقدار
+                    </a>
+                    <a class="dropdown-item text-center" href="{% url 'MYApp:view_Exitgoods_Filter_refferd' %}"
+                       onMouseOver="this.style.color='red'"  onMouseOut="this.style.color='black'">
+                       نام مراجعه کننده
+                    </a>
+                  </div>
+              </div>
+          {% endif %}
+
+
+          <table class="table table-striped table-dark text-right">
+              <thead>
+                <tr>
+
+                  <th scope="col">انبار</th>
+                  <th scope="col">انبار دار</th>
+                  <th scope="col">راننده</th>
+                  <th scope="col">دریافت کننده</th>
+                  <th scope="col">ادرس</th>
+                  <th scope="col">شماره تماس</th>
+                  <th scope="col">شناسه خروج</th>
+                  <th scope="col">کالا</th>
+                  <th scope="col">مقدار</th>
+                  <th scope="col">تاریخ</th>
+                  <th scope="col">شماره حواله</th>
+                </tr>
+
+              </thead>
+
+
+              <tbody>
+
+               {% for data in dataset %}
+                <tr>
+                    <td>{{ data.warehouse}}</td>
+                    <td>{{ data.user.username}}</td>
+                    <td>{{ data.driver_receive}}(راننده)</td>
+                    <td>{{ data.receiver}}(مراجعه کننده)</td>
+                    <td>{{ data.address }}</td>
+
+                    <td>{{ data.receiver.phone }}</td>
+
+                    <td>{{ data.id }}</td>
+
+                    <td>{{ data.registrationOfGoods.goods.name}}</td>
+                    <td>{{ data.value}}</td>
+                    <td>{{ data.date}}</td>
+                    <td>{{ data.SerialForDriver}}</td>
+                </tr>
+               {% endfor %}
+
+              </tbody>
+         </table>
+
+
+
+          <p style="text-align: center; color: #ec0000; font-weight: bold">{{ message }}</p>
+      </div>
+    </div>
+{% endblock %}
+

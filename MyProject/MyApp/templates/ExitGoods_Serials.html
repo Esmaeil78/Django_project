@@ -1,0 +1,47 @@
+{% extends 'WarehouseKeeper_Profile.html' %}
+
+
+
+
+{% block ContentProfile %}
+    <div class="row justify-content-md-center  mt-2" id="ProfileDetail">
+      <div class="col-12 col-sm-12 col-xl-11">
+
+          <p style="color: #9207c0; text-align: center; font-weight: bold">نمایش سریال کالاهای خارج شده</p>
+          <hr>
+
+          <table class="table table-striped table-dark text-right text-center">
+              <thead>
+                <tr>
+
+
+                  <th scope="col">کالا</th>
+                  <th scope="col">سریال کالا</th>
+
+
+                </tr>
+
+              </thead>
+
+
+              <tbody>
+
+               {% for data in dataset %}
+                <tr>
+
+                  <td>{{ data.exitGoods.registrationOfGoods.goods.name }}</td>
+                  <td>{{ data.serial }}</td>
+
+
+
+                </tr>
+               {% endfor %}
+
+              </tbody>
+         </table>
+
+          <p style="text-align: center; color: #ec0000; font-weight: bold">{{ message }}</p>
+
+      </div>
+    </div>
+{% endblock %}

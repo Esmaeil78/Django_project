@@ -1,0 +1,30 @@
+{% extends 'WarehouseKeeper_Profile.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block warehouse_name_top_page %}
+    {% for w in warehouse_name_top_page_id %}
+         <p style="display: inline">
+             نام شرکت: <span style="color: #fcfbfb" title="نام شرکت">{{ w.company.name }}</span> ||
+         </p>
+
+         <p style="display: inline">
+            نام انبار: <span style="color: #fcfbfb" title="نام انبار انتخاب شده">{{ w.name }}</span>
+         </p>
+    {% endfor %}
+
+{% endblock %}
+
+
+{% block ContentProfile %}
+    <div class="row justify-content-sm-center mt-2" id="ProfileDetail">
+      <div class="col-12 col-sm-8 col-xl-5">
+          <p style="text-align: center; color: #ec0000; font-weight: bold">{{ message }}</p>
+          <form method="post" style="text-align: right">
+              {% csrf_token %}
+	          {{form|crispy}}
+              <input type="submit" class="btn btn-success btn-block" value="مشاهده رسید انبار">
+        </form>
+      </div>
+    </div>
+{% endblock %}

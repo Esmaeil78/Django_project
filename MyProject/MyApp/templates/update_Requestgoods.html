@@ -1,0 +1,33 @@
+{% extends 'Referred_Profile.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block ContentProfile %}
+    <div class="row justify-content-md-center mr-5 mt-5" id="ProfileDetail">
+      <div class="col-10 col-sm-10 col-md-6 col-lg-4">
+        <p style="text-align: center; color: #ec0000">{{ message }}</p><hr>
+          <form method="post" style="text-align: right">
+              {% csrf_token %}
+	          {{form.profile|as_crispy_field}}
+              {{form.goods|as_crispy_field}}
+              {{form.value|as_crispy_field}}
+              {{form.address|as_crispy_field}}
+              <input type="submit" class="btn btn-success btn-block" value="ثبت ویرایش">
+        </form>
+
+          <br>
+          {% if upadte == 'Yes' %}
+              <button type="button" class="btn btn-primary" style="margin-left: 40%" >
+                  <a href="#"  onclick="history.go(-2);" style="color: white">بازگشت  </a>
+              </button>
+          {% else %}
+              <button type="button" class="btn btn-primary" style="margin-left: 40%" >
+                  <a href="#"  onclick="history.go(-1);" style="color: white">بازگشت  </a>
+              </button>
+          {% endif %}
+          <hr>
+
+
+      </div>
+    </div>
+{% endblock %}
